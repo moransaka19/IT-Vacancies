@@ -15,6 +15,7 @@ namespace IT_Vacancies.MapperProfile
             CreateMap<Vacancy, VacancyViewModel>()
                 .ForMember(dst => dst.RecruiterName, opt => opt.MapFrom(src => src.RecrutierName))
                 .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dst => dst.Price, opt => opt.MapFrom(src => src.Price))
                 .ReverseMap();
         }
     }
