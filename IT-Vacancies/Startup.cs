@@ -10,6 +10,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Reflection;
+using BLL;
+using DAL.Repositories;
+using DAL.Interfaces;
 
 namespace IT_Vacancies
 {
@@ -29,6 +33,13 @@ namespace IT_Vacancies
 
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+            
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+            services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IRecruiterRepository, RecruiterRepository>();
+            services.AddTransient<IVacancyRepository, VacancyRepository>();
+            services.AddTransient<IVacancyService, VacancyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

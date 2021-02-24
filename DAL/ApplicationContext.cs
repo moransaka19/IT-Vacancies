@@ -26,7 +26,6 @@ namespace DAL
                     Id = 1,
                     Name = "Recrutier Name 1",
                     PhoneNumber = "+380990000000",
-                    CompanyId = 1
                 }
             }); 
 
@@ -37,7 +36,8 @@ namespace DAL
                     Name = "Vacancy Name",
                     Price = 100000,
                     Description = "Test Description 1",
-                    CompanyId = 1
+                    CompanyId = 1,
+                    RecruiterId = 1
                 }
             });
 
