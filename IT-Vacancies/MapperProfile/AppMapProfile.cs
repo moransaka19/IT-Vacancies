@@ -13,6 +13,8 @@ namespace IT_Vacancies.MapperProfile
         public AppMapProfile()
         {
             CreateMap<Vacancy, VacancyViewModel>()
+                .ForMember(dst => dst.RecruiterName, opt => opt.MapFrom(src => src.RecrutierName))
+                .ForMember(dst => dst.Id, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
         }
     }

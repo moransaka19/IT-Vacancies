@@ -7,9 +7,10 @@ namespace BLL
 {
     public interface IVacancyService
     {
-        IEnumerable<Vacancy> GetAllVacansies();
-        Recruiter GetRecruterByVacancy(Vacancy vacancy);
-        Company GetCompanyByVacancy(Vacancy vacancy);
-
+        IEnumerable<Vacancy> GetAllVacancies();
+        void AddNewVacancy(Vacancy model);
+        void UpdateVacancy(Vacancy model);
+        Vacancy GetById(int id);
+        void DeleteVacancy(Vacancy vacancy);
     }
 }

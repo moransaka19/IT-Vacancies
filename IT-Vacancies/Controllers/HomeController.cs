@@ -16,27 +16,15 @@ namespace IT_Vacancies.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IMapper _mapper;
-        private IVacancyService _vacancyService;
 
-        public HomeController(ILogger<HomeController> logger, IMapper mapper, IVacancyService vacancyService)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _mapper = mapper;
-            _vacancyService = vacancyService;
         }
 
         public IActionResult Index()
         {
             return View();
-        }
-
-        public IActionResult Vacancy()
-        {
-            var vacancies = _vacancyService.GetAllVacansies();
-            var vacanciesViewModel = _mapper.Map<IEnumerable<Vacancy>, IEnumerable<VacancyViewModel>>(vacancies);
-
-            return View(vacanciesViewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

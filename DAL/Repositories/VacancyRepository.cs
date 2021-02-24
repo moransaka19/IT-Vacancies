@@ -10,10 +10,5 @@ namespace DAL.Repositories
         public VacancyRepository(ApplicationContext context) : base(context)
         {
         }
-
-        public override IEnumerable<Vacancy> GetAll() 
-        {
-            return dbContext.Vacancies.Include(x => x.Company).Include(x => x.Recruiter);
-        }
     }
 }

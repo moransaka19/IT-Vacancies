@@ -36,8 +36,6 @@ namespace IT_Vacancies
             
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddTransient<ICompanyRepository, CompanyRepository>();
-            services.AddTransient<IRecruiterRepository, RecruiterRepository>();
             services.AddTransient<IVacancyRepository, VacancyRepository>();
             services.AddTransient<IVacancyService, VacancyService>();
         }

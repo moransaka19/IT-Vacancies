@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using Domain;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DAL
 {
@@ -15,9 +16,14 @@ namespace DAL
             dbContext = context;
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return dbContext.Set<T>();
+        }
+
+        public virtual IQueryable<T> GetAll(Expression<Func<T, bool>> predicate)
+        {
+            return GetAll().Where(predicate);
         }
 
         public T GetById(int id)
@@ -38,10 +44,15 @@ namespace DAL
             dbContext.SaveChanges();
         }
 
-
         public virtual void Update(T item)
         {
             dbContext.Entry(item).State = EntityState.Modified;
+            dbContext.SaveChanges();
+        }
+
+        public virtual void Delete(T item)
+        {
+            dbContext.Set<T>().Remove(item);
             dbContext.SaveChanges();
         }
     }
