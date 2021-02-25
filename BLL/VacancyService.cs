@@ -3,6 +3,7 @@ using DAL.Repositories;
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -18,6 +19,32 @@ namespace BLL
         public IEnumerable<Vacancy> GetAllVacancies()
         {
             return _vacancyRepository.GetAll();
+        }
+
+        public IEnumerable<Vacancy> GetAllVacancies(string vacancyName, int minSalary, int maxSalary)
+        {
+            var vacancies = _vacancyRepository.GetAll();
+            if (vacancyName != null)
+            {
+               vacancies = vacancies.Where(x => x.Name.Contains(vacancyName));
+            }
+
+            if (minSalary != 0)
+            {
+               vacancies = vacancies.Where(x => x.Price >= minSalary);
+            }
+
+            if (maxSalary != 0)
+            {
+                vacancies = vacancies.Where(x => x.Price <= maxSalary);
+            }
+
+            if (vacancies == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            return vacancies;
         }
 
         public void AddNewVacancy(Vacancy model)

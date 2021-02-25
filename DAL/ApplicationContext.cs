@@ -16,7 +16,7 @@ namespace DAL
                 {
                     Id = 1,
                     Name = "Vacancy Name",
-                    Price = "100000",
+                    Price = 100000,
                     Description = "Test Description 1",
                     RecrutierName = "Recrutier Name 1",
                     PhoneNumber = "+380990000000",

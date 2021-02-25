@@ -24,9 +24,17 @@ namespace IT_Vacancies.Controllers
         public IActionResult Index()
         {
             var vacancies = _vacancyService.GetAllVacancies();
-            var vacanciesViewModel = _mapper.Map<IEnumerable<Vacancy>, IEnumerable<VacancyViewModel>>(vacancies);
+            var vacanciesViewModel = _mapper.Map<IEnumerable<VacancyViewModel>>(vacancies);
 
             return View(vacanciesViewModel);
+        }
+
+        public IActionResult OnPost(string vacancyName, int minSalary, int maxSalary)
+        {
+            var vacancies = _vacancyService.GetAllVacancies(vacancyName, minSalary, maxSalary);
+            var vacanciesViewModel = _mapper.Map<IEnumerable<VacancyViewModel>>(vacancies);
+
+            return View("../Vacancy/Index", vacanciesViewModel);
         }
 
         public IActionResult Create()
@@ -39,7 +47,7 @@ namespace IT_Vacancies.Controllers
         {
             var vacancy = _mapper.Map<Vacancy>(model);
             _vacancyService.AddNewVacancy(vacancy);
-            
+
 
             return RedirectToAction(nameof(Index));
         }
